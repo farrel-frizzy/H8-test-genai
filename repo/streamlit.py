@@ -78,14 +78,6 @@ def answer_questions():
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 
-    # Feedback Section
-    feedback = st.radio("Was this answer helpful?", ["Yes", "No", "Not Sure"])
-    if feedback == "Yes":
-        st.success("Thank you for your feedback! 😊")
-    elif feedback == "No":
-        st.warning("We appreciate your feedback and will work on improving! 🙏")
-    st.markdown("</div>", unsafe_allow_html=True)
-
 if __name__ == "__main__":
     answer_questions()
 
