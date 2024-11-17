@@ -41,7 +41,9 @@ def answer_questions():
     st.markdown('<div class="title">🌠 Test Watsonx.ai Large Language Model</div>', unsafe_allow_html=True)
 
     # Introductory Section
-    st.markdown('<div class="info-box">Welcome! Enter a question below to test IBM Watsonx.ai LLM.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="info-box">Welcome!</div>', unsafe_allow_html=True)
+    st.markdown('<div class="info-box">Made by Frizzy</div>', unsafe_allow_html=True)
+    st.markdown('<div class="info-box">Enter a question below to test IBM Watsonx.ai LLM.</div>', unsafe_allow_html=True)
 
     # Input Section
     user_question = st.text_input(
@@ -60,7 +62,7 @@ def answer_questions():
             st.info("Generating response...")
             model_type = ModelTypes.FLAN_UL2
             max_tokens = 100
-            min_tokens = 20
+            min_tokens = 0
             decoding = DecodingMethods.GREEDY
 
             model = get_model(model_type, max_tokens, min_tokens, decoding)
