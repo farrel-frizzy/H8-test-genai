@@ -7,12 +7,16 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 
 url = "https://us-south.ml.cloud.ibm.com"
 
-def get_model(model_type,max_tokens,min_tokens,decoding):
+def get_model(model_type,max_tokens,min_tokens,decoding, stop_sequences, temperature, top_k, top_p):
 
     generate_params = {
         GenParams.MAX_NEW_TOKENS: max_tokens,
         GenParams.MIN_NEW_TOKENS: min_tokens,
-        GenParams.DECODING_METHOD: decoding
+        GenParams.DECODING_METHOD: decoding,
+        GenParams.STOP_SEQUENCES: stop_sequences,
+        GenParams.TEMPERATURE: temperature,
+        GenParams.TOP_K: top_k,
+        GenParams.TOP_P: top_p
     }
 
     model = Model(
@@ -63,9 +67,13 @@ def answer_questions():
             model_type = ModelTypes.FLAN_UL2
             max_tokens = 100
             min_tokens = 0
-            decoding = DecodingMethods.GREEDY
+            decoding = DecodingMethods.SAMPLE
+            stop_sequences = ['.']
+            temperature = 0.7
+            top_k = 50
+            top_p = 1
 
-            model = get_model(model_type, max_tokens, min_tokens, decoding)
+            model = get_model(model_type, max_tokens, min_tokens, decoding, stop_sequences, temperature, top_k, top_p)
 
             generated_response = model.generate(prompt=user_question)
 
